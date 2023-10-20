@@ -12,16 +12,32 @@
 
 git clone https://github.com/tomxi1997/build-aosp-clang-for-arm64.git tc-build
 
-mkdir -p ./tc-build/src/llvm-project
+cd ./tc-build/src/
 
-cd ./tc-build/src/llvm-project
+git clone https://android.googlesource.com/toolchain/llvm-project
+git clone https://android.googlesource.com/toolchain/llvm_android
 
-2.下载经补丁后的aosp clang源码可从这里找https://android.googlesource.com/toolchain/llvm-project/+log/c4c5e79dd4b4c78eee7cffd9b0d7394b5bedcf12/clang-tools-extra
-就以补丁181处为例,尽量选择修改处多的
+然后参考这https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+/refs/heads/main
+实际编译好的x64的工具链
+以clang-r498229b为例
 
-wget https://android.googlesource.com/toolchain/llvm-project/+archive/984b800a036fc61ccb129a8da7592af9cadc94dd.tar.gz
+cd llvm-project
+git checkout e34ed7d63863b45858e74126edaa738e75887800
+cd ..
+cd llvm_android
+git checkout 67b7374615b157459d52e8e145745c9ee6dc86aa
+cd patches
+cp -R ./patches/*.patch ../llvm-project/
+cp -R ./patches/cherry/*.patch ../llvm-project/
+cd ../llvm-project/
 
-tar -xf *.gz
+
+#!/bin/bash  
+for file in *.patch ;  
+do  
+patch -p1 < $file ;  
+done  
+
 
 cd ...
 
@@ -29,11 +45,17 @@ chmod +x build.sh
 
 ./build.sh
 
-3.最终在三星s10 骁龙855的lxc ubuntu 22.04 总耗时间1小时44分编译完成最终会安装在 /root/Toolchain/Pdx-clang16,打包测试。
+3.最终在三星s10 骁龙855的lxc ubuntu 22.04 总耗时间1小时44分编译完成最终会安装在 /root/Toolchain/clang-r498229b,打包测试。
 
 cd /root/Toolchain
 
-XZ_OPT="-9" tar --warning=no-file-changed -cJf pdx-clang16.tar.xz pdx-clang16
+XZ_OPT="-9" tar --warning=no-file-changed -cJf clang-r498229b.tar.xz clang-r498229b
+
+或者安装多线程打包工具pixz
+apt install pixz
+
+tar -I pixz -cf clang-r498229b.tar.xz clang-r498229b
+
 
 
 
