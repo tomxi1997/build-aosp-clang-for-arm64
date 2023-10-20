@@ -15,6 +15,7 @@ git clone https://github.com/tomxi1997/build-aosp-clang-for-arm64.git tc-build
 cd ./tc-build/src/
 
 git clone https://android.googlesource.com/toolchain/llvm-project
+
 git clone https://android.googlesource.com/toolchain/llvm_android
 
 然后参考这https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+/refs/heads/main
@@ -22,13 +23,19 @@ git clone https://android.googlesource.com/toolchain/llvm_android
 以clang-r498229b为例
 
 cd llvm-project
+
 git checkout e34ed7d63863b45858e74126edaa738e75887800
+
 cd ..
+
 cd llvm_android
+
 git checkout 67b7374615b157459d52e8e145745c9ee6dc86aa
-cd patches
+
 cp -R ./patches/*.patch ../llvm-project/
+
 cp -R ./patches/cherry/*.patch ../llvm-project/
+
 cd ../llvm-project/
 
 
