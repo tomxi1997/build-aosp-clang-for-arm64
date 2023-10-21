@@ -19,7 +19,7 @@ git clone https://android.googlesource.com/toolchain/llvm-project
 git clone https://android.googlesource.com/toolchain/llvm_android
 
 然后参考这https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+/refs/heads/main
-实际编译好的x64的工具链
+实际编译好的x64的工具链的manifest_10742551.xml，用git checkout检出相应的提交，然后同理检出llvm_android中相对应的提交，并将补丁运用于llvm-project，编译。
 以clang-r498229b为例
 
 cd llvm-project
