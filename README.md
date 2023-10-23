@@ -10,7 +10,7 @@
 
 1.克隆此项目，注意此脚本只适合较新的clang版本比如clang16
 
-git clone https://github.com/tomxi1997/build-aosp-clang-for-arm64.git tc-build
+git clone -b new https://github.com/tomxi1997/build-aosp-clang-for-arm64.git tc-build
 
 cd ./tc-build/src/
 
