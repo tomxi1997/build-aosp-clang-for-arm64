@@ -1,8 +1,8 @@
 name: Build test
 on:
-  push:
-    branches:
-      - main
+  watch:
+    types: [started]
+      
 jobs:
   build-test:
     runs-on: ubuntu-latest
