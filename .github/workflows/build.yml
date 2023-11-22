@@ -1,7 +1,5 @@
 name: Build test
 on:
-  watch:
-    types: [started]
   workflow_dispatch:
       
 jobs:
