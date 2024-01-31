@@ -441,7 +441,8 @@ if args.bolt or (args.pgo and [x for x in args.pgo if 'kernel' in x]):
         lsm.location = Path(src_folder, f"linux-{ver_str}")
         lsm.patches = list(src_folder.glob('*.patch'))
 
-        lsm.tarball.base_download_url = 'https://cdn.kernel.org/pub/linux/kernel/v6.x'
+        #lsm.tarball.base_download_url = 'https://cdn.kernel.org/pub/linux/kernel/v6.x'
+        lsm.tarball.base_download_url = 'https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x'
         lsm.tarball.local_location = lsm.location.with_name(f"{lsm.location.name}.tar.xz")
         lsm.tarball.remote_checksum_name = 'sha256sums.asc'
 
